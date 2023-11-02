@@ -1,6 +1,6 @@
 from share import *
 import config
-
+import os
 import cv2
 import einops
 import gradio as gr
@@ -13,6 +13,7 @@ from annotator.util import resize_image, HWC3
 from cldm.model import create_model, load_state_dict
 from cldm.ddim_hacked import DDIMSampler
 
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 model = create_model('./models/cldm_v15.yaml').cpu()
 model.load_state_dict(load_state_dict('/media/weights/ControlNet/pretrained/control_sd15_scribble.pth', location='cuda'), strict=False)
